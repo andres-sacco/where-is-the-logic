@@ -1,0 +1,188 @@
+{
+	"info": {
+		"_postman_id": "098054bd-cdc2-4940-84d7-3adc5c50b203",
+		"name": "TWA",
+		"description": "This collection contain all the endpoints of the different API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "578119"
+	},
+	"item": [
+		{
+			"name": "api-catalog",
+			"item": [
+				{
+					"name": "City by code",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6070/api/flights/catalog/city/BUE",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6070",
+							"path": [
+								"api",
+								"flights",
+								"catalog",
+								"city",
+								"BUE"
+							]
+						},
+						"description": "This endpoint provide all the information about one particular city"
+					},
+					"response": []
+				},
+				{
+					"name": "Country by code",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6070/api/flights/catalog/country/AR",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6070",
+							"path": [
+								"api",
+								"flights",
+								"catalog",
+								"country",
+								"AR"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6070/api/flights/catalog/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6070",
+							"path": [
+								"api",
+								"flights",
+								"catalog",
+								"health"
+							]
+						},
+						"description": "This endpoint provide you information about the status of the API"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "api-reservation",
+			"item": [
+				{
+					"name": "Save reservation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"passengers\": [\n        {\n            \"firstName\": \"Andres\",\n            \"lastName\": \"Sacco\",\n            \"documentNumber\": \"AB554713\",\n            \"documentType\": \"PASSPORT\",\n            \"birthday\": \"1985-01-01\"\n        },\n        {\n            \"firstName\": \"Andres\",\n            \"lastName\": \"Sacco\",\n            \"documentNumber\": \"AB554718\",\n            \"documentType\": \"PASSPORT\",\n            \"birthday\": \"1985-01-01\"\n        }\n    ],\n    \"itinerary\": {\n        \"segment\": [\n            {\n                \"origin\": \"BUE\",\n                \"destination\": \"MIA\",\n                \"departure\": \"2023-12-31\",\n                \"arrival\": \"2024-01-01\",\n                \"carrier\": \"AA\"\n            }\n        ],\n        \"price\": {\n            \"totalPrice\": 30.00,\n            \"totalTax\": 20.00,\n            \"basePrice\": 10.00\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8070/api/flights/reservation/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8070",
+							"path": [
+								"api",
+								"flights",
+								"reservation",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get reservation by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8070/api/flights/reservation/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8070",
+							"path": [
+								"api",
+								"flights",
+								"reservation",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Reservations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8070/api/flights/reservation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8070",
+							"path": [
+								"api",
+								"flights",
+								"reservation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8070/api/flights/reservation/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8070",
+							"path": [
+								"api",
+								"flights",
+								"reservation",
+								"health"
+							]
+						},
+						"description": "This endpoint provide you information about the status of the API"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
