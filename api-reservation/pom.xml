@@ -21,9 +21,14 @@
         <mysql-connector-java.version>8.0.31</mysql-connector-java.version>
 
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-
         <formatter-maven-plugin.version>2.23.0</formatter-maven-plugin.version>
+
+        <archunit-junit5.version>1.2.1</archunit-junit5.version>
+        <flights-architecture-test.version>1.0.6</flights-architecture-test.version>
+        <arch-unit-maven-plugin.version>4.0.2</arch-unit-maven-plugin.version>
+        <arch-unit-build-plugin-core.version>4.0.1</arch-unit-build-plugin-core.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -96,12 +101,6 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <scope>test</scope>
-        </dependency>
-
     </dependencies>
 
     <build>
@@ -142,8 +141,71 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>AT</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.societegenerale.commons</groupId>
+                        <artifactId>arch-unit-maven-plugin</artifactId>
+                        <version>${arch-unit-maven-plugin.version}</version>
+                        <configuration>
+                            <rules>
+                                <preConfiguredRules>
+                                    <!-- Naming rules -->
+                                    <rule>com.twa.flights.architecture.rules.controller.ControllerShouldBeNameProperlyRuleTest</rule>
+                                    <rule>com.twa.flights.architecture.rules.resource.ResourceShouldBeNameProperlyRuleTest</rule>
+                                    <rule>com.twa.flights.architecture.rules.service.ServiceShouldBeNameProperlyRuleTest</rule>
+
+                                    <!-- Custom rules -->
+                                    <rule>com.twa.flights.architecture.rules.dto.DTOShouldHaveSetAndGetRuleTest</rule>
+
+                                    <!-- General rules -->
+                                    <rule>com.twa.flights.architecture.rules.general.LayeredArchitectureRuleTest</rule>
+                                </preConfiguredRules>
+                            </rules>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>arch-test</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.societegenerale.commons</groupId>
+                                <artifactId>arch-unit-build-plugin-core</artifactId>
+                                <version>${arch-unit-build-plugin-core.version}</version>
+                            </dependency>
+
+                            <dependency>
+                                <groupId>com.twa.flights.common</groupId>
+                                <artifactId>flights-architecture-test</artifactId>
+                                <version>${flights-architecture-test.version}</version>
+                            </dependency>
+
+                            <dependency>
+                                <groupId>com.tngtech.archunit</groupId>
+                                <artifactId>archunit-junit5</artifactId>
+                                <version>${archunit-junit5.version}</version>
+                            </dependency>
+
+                            <dependency>
+                                <groupId>com.tngtech.archunit</groupId>
+                                <artifactId>archunit-junit5-api</artifactId>
+                                <version>${archunit-junit5.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
