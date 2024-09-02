@@ -31,6 +31,8 @@ class ControllerRulesTest {
             .andShould().notBeAnnotatedWith(ResponseBody.class)
             .because("Controller endpoints should not be annotated with @RequestMapping or @ResponseBody");
 
+
+
     @ArchTest
     static final ArchRule classesShouldBeAnnotated = classes().that().resideInAPackage(CONTROLLER_PACKAGE).and()
             .resideOutsideOfPackage(RESOURCES_PACKAGE).should().beAnnotatedWith(RestController.class).orShould()
