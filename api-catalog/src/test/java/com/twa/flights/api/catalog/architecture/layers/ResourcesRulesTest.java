@@ -24,5 +24,5 @@ class ResourcesRulesTest {
     static final ArchRule resourcesMethodsShouldBeAnnotated = methods().that().areDeclaredInClassesThat()
             .resideInAPackage(RESOURCES_PACKAGE).should().beAnnotatedWith(Operation.class).orShould()
             .beAnnotatedWith(Parameter.class).orShould().beAnnotatedWith(ApiResponse.class)
-            .because("Resources methods should be annotated by Swagger annotations");
+            .because("Resources methods should be annotated by Swagger annotations like @Operation, @Parameter, and @ApiResponse");
 }

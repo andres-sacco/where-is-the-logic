@@ -13,11 +13,12 @@ public class LayeredArchitectureRuleTest implements ArchRuleTest {
 
     @Override
     public void execute(String packagePath, ScopePathProvider scopePathProvider, Collection<String> excludedPaths) {
-        layeredArchitecture().consideringAllDependencies().layer(CONTROLLER_SUFFIX).definedBy(CONTROLLER_PACKAGE)
-                .whereLayer(CONTROLLER_SUFFIX).mayNotBeAccessedByAnyLayer()
+        layeredArchitecture().consideringAllDependencies().layer(CONTROLLER_LAYER).definedBy(CONTROLLER_PACKAGE)
+                .layer(SERVICE_LAYER).definedBy(SERVICE_PACKAGE).layer(REPOSITORY_LAYER).definedBy(REPOSITORY_PACKAGE)
 
-                .layer(SERVICE_SUFFIX).definedBy(SERVICE_PACKAGE).whereLayer(SERVICE_SUFFIX)
-                .mayOnlyBeAccessedByLayers(SERVICE_SUFFIX, CONTROLLER_SUFFIX)
+                .whereLayer(CONTROLLER_LAYER).mayNotBeAccessedByAnyLayer().whereLayer(SERVICE_LAYER)
+                .mayOnlyBeAccessedByLayers(CONTROLLER_LAYER, SERVICE_LAYER).whereLayer(REPOSITORY_LAYER)
+                .mayOnlyBeAccessedByLayers(SERVICE_LAYER)
 
                 .check(ArchUtils.importAllClassesInPackage(scopePathProvider.getMainClassesPath(), packagePath));
     }

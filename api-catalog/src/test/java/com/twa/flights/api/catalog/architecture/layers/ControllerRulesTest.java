@@ -10,8 +10,8 @@ import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.methods;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tngtech.archunit.core.importer.ImportOption;
@@ -26,12 +26,16 @@ class ControllerRulesTest {
     static final ArchRule publicConstructorsAreOnlyAllowed = publicConstructorsRule(CONTROLLER_PACKAGE);
 
     @ArchTest
-    static final ArchRule publicMethodsShouldBeProperlyAnnotated = methods().that().areDeclaredInClassesThat()
+    static final ArchRule publicMethodsShouldAvoidUseRequestMapping = methods().that().areDeclaredInClassesThat()
             .resideInAPackage(CONTROLLER_PACKAGE).and().arePublic().should().notBeAnnotatedWith(RequestMapping.class)
-            .andShould().notBeAnnotatedWith(ResponseBody.class)
-            .because("Controller endpoints should not be annotated with @RequestMapping or @ResponseBody");
+            .because(
+                    "Controller endpoints should not be annotated with @RequestMapping. Use @GetMapping, @PostMapping, @PutMapping, @DeleteMapping, and @PatchMapping.");
 
-
+    @ArchTest
+    static final ArchRule publicMethodsShouldAvoidUseResponseBody = methods().that().areDeclaredInClassesThat()
+            .resideInAPackage(CONTROLLER_PACKAGE).and().arePublic().should().notBeAnnotatedWith(ResponseBody.class)
+            .because(
+                    "Controller endpoints should not be annotated with @ResponseBody. Not include on the declaration the annotation.");
 
     @ArchTest
     static final ArchRule classesShouldBeAnnotated = classes().that().resideInAPackage(CONTROLLER_PACKAGE).and()

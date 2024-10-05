@@ -14,10 +14,9 @@ public class ControllerShouldBeNameProperlyRuleTest implements ArchRuleTest {
 
     @Override
     public void execute(String packagePath, ScopePathProvider scopePathProvider, Collection<String> excludedPaths) {
-        classes().that().resideInAPackage(CONTROLLER_PACKAGE).and().resideOutsideOfPackage(RESOURCE_PACKAGE).should()
-                .haveSimpleNameEndingWith(CONTROLLER_SUFFIX)
+        classes().that().resideOutsideOfPackage(CONTROLLER_PACKAGE).should()
+                .haveSimpleNameNotEndingWith(CONTROLLER_SUFFIX)
                 .because(namingExplanation(ArchitectureConstants.CONTROLLER_PACKAGE, CONTROLLER_SUFFIX))
                 .check(ArchUtils.importAllClassesInPackage(scopePathProvider.getMainClassesPath(), packagePath));
-
     }
 }

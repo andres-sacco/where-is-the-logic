@@ -8,6 +8,7 @@ import com.tngtech.archunit.lang.ArchRule;
 import org.slf4j.Logger;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.*;
+import static com.tngtech.archunit.library.dependencies.SlicesRuleDefinition.slices;
 
 @AnalyzeClasses(packages = ArchitectureConstants.DEFAULT_PACKAGE, importOptions = ImportOption.DoNotIncludeTests.class)
 class GeneralCodingRulesTest {
@@ -22,4 +23,8 @@ class GeneralCodingRulesTest {
             .doNotHaveName("serialVersionUID").and().doNotHaveModifier(JavaModifier.SYNTHETIC).should()
             .haveNameMatching(".*^[A-Z].*")
             .because("Variables with static and final modifiers should be named in uppercase");
+
+    @ArchTest
+    static final ArchRule freeOfCycles = slices().matching("com.twa.flights.api.(*)..").should().beFreeOfCycles()
+            .because("Check your code because there are some classes that have cycles");
 }

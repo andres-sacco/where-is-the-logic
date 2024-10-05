@@ -14,8 +14,8 @@ public class ResourceShouldBeNameProperlyRuleTest implements ArchRuleTest {
 
     @Override
     public void execute(String packagePath, ScopePathProvider scopePathProvider, Collection<String> excludedPaths) {
-        classes().that().resideInAPackage(RESOURCE_PACKAGE).should().haveSimpleNameEndingWith(RESOURCE_SUFFIX)
-                .because(namingExplanation(ArchitectureConstants.RESOURCE_PACKAGE, RESOURCE_SUFFIX))
+        classes().that().resideInAPackage(RESOURCES_PACKAGE).should().haveSimpleNameEndingWith(RESOURCES_SUFFIX)
+                .because(namingExplanation(ArchitectureConstants.RESOURCES_PACKAGE, RESOURCES_SUFFIX))
                 .check(ArchUtils.importAllClassesInPackage(scopePathProvider.getMainClassesPath(), packagePath));
     }
 }

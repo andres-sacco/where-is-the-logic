@@ -1,4 +1,4 @@
-package com.twa.flights.api.catalog.http;
+package com.twa.flights.api.catalog.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +16,7 @@ import com.twa.flights.api.catalog.service.CityService;
 @RequestMapping("/")
 public class CatalogController implements CatalogResources {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CatalogController.class);
+    private Logger lo = LoggerFactory.getLogger(CatalogController.class);
 
     private CityService entityService;
 
@@ -27,7 +27,7 @@ public class CatalogController implements CatalogResources {
 
     @Override
     public ResponseEntity<CityDTO> getCityByCode(String code) {
-        LOGGER.info("Obtain all the information about the city with code {}", code);
+        lo.info("Obtain all the information about the city with code {}", code);
 
         CityDTO response = entityService.getCityByCode(code);
         return new ResponseEntity<>(response, HttpStatus.OK);
