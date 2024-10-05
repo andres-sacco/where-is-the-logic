@@ -1,4 +1,4 @@
-package com.twa.flights.api.catalog.controller;
+package com.twa.flights.api.catalog.http;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
