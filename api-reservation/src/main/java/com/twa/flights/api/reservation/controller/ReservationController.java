@@ -19,7 +19,7 @@ import java.util.List;
 @Validated
 public class ReservationController implements ReservationResource {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ReservationController.class);
+    private Logger lo = LoggerFactory.getLogger(ReservationController.class);
     private final ReservationService service;
 
     @Autowired
@@ -29,28 +29,28 @@ public class ReservationController implements ReservationResource {
 
     @GetMapping
     public ResponseEntity<List<ReservationDTO>> getReservations(SearchReservationCriteriaDTO criteria) {
-        LOGGER.info("Obtain all the reservations");
+        lo.info("Obtain all the reservations");
         List<ReservationDTO> response = service.getReservations(criteria);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ReservationDTO> getReservationById(@PathVariable Long id) {
-        LOGGER.info("Obtain information from a reservation with {}", id);
+        lo.info("Obtain information from a reservation with {}", id);
         ReservationDTO response = service.getReservationById(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<ReservationDTO> save(@RequestBody ReservationDTO reservation) {
-        LOGGER.info("Saving new reservation");
+        lo.info("Saving new reservation");
         ReservationDTO response = service.save(reservation);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ReservationDTO> update(@PathVariable Long id, @RequestBody ReservationDTO reservation) {
-        LOGGER.info("Updating a reservation with {}", id);
+        lo.info("Updating a reservation with {}", id);
         ReservationDTO response = service.update(id, reservation);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
@@ -58,7 +58,7 @@ public class ReservationController implements ReservationResource {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-        LOGGER.info("Deleting a reservation with {}", id);
+        lo.info("Deleting a reservation with {}", id);
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
