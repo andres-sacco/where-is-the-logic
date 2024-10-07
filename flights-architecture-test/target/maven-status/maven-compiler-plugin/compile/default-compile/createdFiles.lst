@@ -1,8 +1,0 @@
-com/twa/flights/architecture/rules/service/ServiceShouldBeNameProperlyRuleTest.class
-com/twa/flights/architecture/rules/dto/DTOShouldHaveSetAndGetRuleTest.class
-com/twa/flights/architecture/condition/AccessFieldsCondition$1.class
-com/twa/flights/architecture/rules/resource/ResourceShouldBeNameProperlyRuleTest.class
-com/twa/flights/architecture/rules/general/LayeredArchitectureRuleTest.class
-com/twa/flights/architecture/condition/AccessFieldsCondition.class
-com/twa/flights/architecture/general/ArchitectureConstants.class
-com/twa/flights/architecture/rules/controller/ControllerShouldBeNameProperlyRuleTest.class
